@@ -27,7 +27,7 @@ O site tem três telas, todas na mesma página. Só a tela muda, sem abrir outra
 
 1. Baixe ou clone o projeto:
    ```bash
-   git clone https://github.com/018Augusto/projeto_financeiro_git.git
+   git clone https://github.com/018Augusto/projeto_financeiro_simples.git
    ```
 2. Abra a pasta no VS Code.
 3. Abra o arquivo `index.html` no navegador (duplo clique) ou use a extensão **Live Server** do VS Code.
