@@ -1,73 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Meu planejamento financeiro</title>
+  <meta name="theme-color" content="#f4f6f3">
+  <meta name="description" content="Painel pessoal para organizar a renda, planejar despesas e acompanhar pagamentos.">
+  <title>AUGUSTO | Planejamento financeiro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
-    <h1>Meu planejamento financeiro</h1>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="eyebrow">CONTROLE FINANCEIRO PESSOAL</span>
+        <h1>AUGUSTO<span class="brand-separator"> / </span><span class="brand-light">FINANÇAS</span></h1>
+        <p>Organize seus planos. Acompanhe seu dinheiro.</p>
+      </div>
+      <div class="save-state" id="save-status" role="status" aria-live="polite">
+        <span class="save-dot" aria-hidden="true"></span>
+        <span id="save-status-text">Salvamento automático</span>
+      </div>
+    </header>
 
-    <nav class="menu">
-      <button type="button" data-go="salario">1. Salário</button>
-      <button type="button" data-go="planejar">2. Planejar</button>
-      <button type="button" data-go="resumo">3. Resumo</button>
+    <nav class="menu" aria-label="Etapas do planejamento">
+      <button type="button" data-go="salario" class="ativo" aria-controls="tela-salario" title="Defina o valor que você tem disponível.">
+        <span class="nav-number">01</span><span>Minha renda</span>
+      </button>
+      <button type="button" data-go="planejar" aria-controls="tela-planejar" title="Adicione períodos, despesas e pagamentos.">
+        <span class="nav-number">02</span><span>Planejamento</span>
+      </button>
+      <button type="button" data-go="resumo" aria-controls="tela-resumo" title="Confira os totais e para onde seu dinheiro vai.">
+        <span class="nav-number">03</span><span>Visão geral</span>
+      </button>
     </nav>
 
-    <!-- TELA 1: SALÁRIO -->
-    <section id="tela-salario" class="tela">
-      <h2>Quanto dinheiro você tem para organizar?</h2>
-      <p>Digite o valor do seu salário. Depois você divide esse dinheiro em períodos e gastos.</p>
-      <label for="salario">Valor em reais (R$)</label>
-      <input id="salario" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ex: 200">
-      <p id="erro-salario" class="aviso erro" hidden></p>
-      <div class="botoes">
-        <button type="button" id="btn-continuar" class="principal">Continuar</button>
-        <button type="button" id="btn-exemplo">Ver exemplo do PDF</button>
+    <details class="guide" id="guia">
+      <summary><span class="guide-icon" aria-hidden="true">?</span> Como usar este painel <span class="guide-hint">Guia rápido</span></summary>
+      <div class="guide-content">
+        <div class="guide-step"><span>01</span><div><strong>Informe sua renda</strong><p>Digite quanto você tem disponível para organizar no período.</p></div></div>
+        <div class="guide-step"><span>02</span><div><strong>Monte seu planejamento</strong><p>Crie períodos e adicione despesas. Escolha uma categoria e marque cada conta como paga ou pendente.</p></div></div>
+        <div class="guide-step"><span>03</span><div><strong>Acompanhe os resultados</strong><p>Veja quanto planejou, quanto já pagou e quanto ainda está disponível. Seus dados são salvos neste navegador.</p></div></div>
+      </div>
+    </details>
+
+    <!-- Etapa 1: renda -->
+    <section id="tela-salario" class="tela" aria-labelledby="titulo-renda">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">ETAPA 01</span>
+          <h2 id="titulo-renda">Comece pela sua renda</h2>
+          <p>Defina o valor total que você quer distribuir entre seus gastos e objetivos.</p>
+        </div>
+      </div>
+
+      <div class="income-card">
+        <label for="salario">Valor disponível <span class="help" tabindex="0" title="Informe sua renda ou o total que deseja organizar. Use vírgula para separar os centavos." aria-label="Informe sua renda ou o total que deseja organizar. Use vírgula para separar os centavos.">i</span></label>
+        <div class="money-field">
+          <span aria-hidden="true">R$</span>
+          <input id="salario" type="text" inputmode="decimal" autocomplete="off" maxlength="18" placeholder="0,00" aria-describedby="dica-salario">
+        </div>
+        <small id="dica-salario">Exemplo: 3.500,00</small>
+      </div>
+
+      <p id="erro-salario" class="notice error" role="alert" hidden></p>
+      <div class="actions">
+        <button type="button" id="btn-continuar" class="button primary">Salvar e continuar <span aria-hidden="true">→</span></button>
       </div>
     </section>
 
-    <!-- TELA 2: PLANEJAR -->
-    <section id="tela-planejar" class="tela" hidden>
-      <div class="barra">
-        <div><span>Salário</span><strong id="b-salario"></strong></div>
-        <div><span>Planejado</span><strong id="b-planejado"></strong></div>
-        <div><span id="b-sobra-rotulo">Sobra</span><strong id="b-sobra"></strong></div>
+    <!-- Etapa 2: planejamento -->
+    <section id="tela-planejar" class="tela" aria-labelledby="titulo-planejamento" hidden>
+      <div class="section-heading section-heading-row">
+        <div>
+          <span class="section-kicker">ETAPA 02</span>
+          <h2 id="titulo-planejamento">Seu planejamento</h2>
+          <p>Registre o que pretende gastar e acompanhe o que já foi pago.</p>
+        </div>
+        <span class="section-note">Atualizado automaticamente</span>
       </div>
-      <div class="progresso"><div id="b-progresso"></div></div>
-      <p id="b-aviso" class="aviso"></p>
 
-      <div id="periodos"></div>
+      <div class="metric-grid" aria-label="Resumo do orçamento">
+        <article class="metric-card">
+          <span>Renda disponível <span class="help" tabindex="0" title="Valor total informado na primeira etapa." aria-label="Valor total informado na primeira etapa.">i</span></span>
+          <strong id="b-salario">R$ 0,00</strong>
+        </article>
+        <article class="metric-card">
+          <span>Total planejado <span class="help" tabindex="0" title="Soma de todas as despesas, pagas ou pendentes." aria-label="Soma de todas as despesas, pagas ou pendentes.">i</span></span>
+          <strong id="b-planejado">R$ 0,00</strong>
+        </article>
+        <article class="metric-card">
+          <span>Já pago <span class="help" tabindex="0" title="Soma das despesas marcadas como pagas." aria-label="Soma das despesas marcadas como pagas.">i</span></span>
+          <strong id="b-pago">R$ 0,00</strong>
+        </article>
+        <article class="metric-card metric-highlight">
+          <span id="b-sobra-rotulo">Saldo disponível <span class="help" tabindex="0" title="Renda menos tudo o que foi planejado." aria-label="Renda menos tudo o que foi planejado.">i</span></span>
+          <strong id="b-sobra">R$ 0,00</strong>
+        </article>
+      </div>
 
-      <div class="botoes">
-        <button type="button" id="btn-add-periodo">+ Novo período</button>
-        <button type="button" id="btn-ver-resumo" class="principal">Ver resumo</button>
+      <div class="budget-panel">
+        <div class="budget-heading"><span>Uso do orçamento</span><strong id="b-percentual">0%</strong></div>
+        <div class="progresso" id="b-progresso-track" role="progressbar" aria-label="Percentual da renda planejada" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="b-progresso"></div>
+        </div>
+        <p id="b-aviso" class="notice info" aria-live="polite">Informe sua renda para começar.</p>
+      </div>
+
+      <div class="list-heading">
+        <div><h3>Períodos e despesas</h3><p>Separe seus gastos por semana, quinzena ou mês.</p></div>
+        <button type="button" id="btn-add-periodo" class="button secondary">+ Novo período</button>
+      </div>
+      <div id="periodos" class="period-list"></div>
+
+      <div class="actions actions-end">
+        <button type="button" id="btn-ver-resumo" class="button primary">Ver visão geral <span aria-hidden="true">→</span></button>
       </div>
     </section>
 
-    <!-- TELA 3: RESUMO -->
-    <section id="tela-resumo" class="tela" hidden>
+    <!-- Etapa 3: resumo -->
+    <section id="tela-resumo" class="tela" aria-labelledby="titulo-resumo" hidden>
       <div id="resumo"></div>
-      <div class="botoes">
-        <button type="button" id="btn-voltar">Voltar e ajustar</button>
-        <button type="button" id="btn-apagar" class="perigo">Apagar tudo</button>
+      <div class="actions summary-actions">
+        <button type="button" id="btn-voltar" class="button secondary">← Voltar e ajustar</button>
+        <div class="export-actions">
+          <button type="button" id="btn-exportar-csv" class="button secondary">Exportar CSV</button>
+          <button type="button" id="btn-backup" class="button secondary">Baixar backup</button>
+          <button type="button" id="btn-importar" class="button secondary">Restaurar backup</button>
+          <button type="button" id="btn-imprimir" class="button secondary">Imprimir</button>
+        </div>
+        <input type="file" id="arquivo-backup" accept=".json,application/json" hidden>
+      </div>
+      <div class="danger-zone">
+        <div><strong>Reiniciar planejamento</strong><p>Apaga os dados salvos neste navegador.</p></div>
+        <button type="button" id="btn-apagar" class="button danger">Apagar tudo</button>
       </div>
     </section>
+
+    <footer class="app-footer">
+      <span>AUGUSTO / FINANÇAS</span>
+      <span>Seus dados ficam salvos neste navegador.</span>
+    </footer>
   </main>
 
-  <datalist id="sugestoes">
-    <option value="Alimentação"></option>
-    <option value="Lazer"></option>
-    <option value="Transporte"></option>
-    <option value="Contas"></option>
-    <option value="Saúde"></option>
-    <option value="Viagem"></option>
-    <option value="Guardar dinheiro"></option>
-    <option value="Emergências e imprevistos"></option>
-  </datalist>
-
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

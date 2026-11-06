@@ -1,0 +1,21 @@
+AUGUSTO | FINANÇAS
+
+ARQUIVOS
+- index.html: estrutura do painel.
+- style.css: visual e adaptação para celular.
+- script.js: cálculos, navegação, salvamento e exportações.
+
+COMO ABRIR
+1. Mantenha os três arquivos na mesma pasta.
+2. Abra o arquivo index.html em um navegador atualizado.
+3. Informe sua renda e comece a adicionar períodos e despesas.
+
+DADOS E BACKUP
+- O painel salva as alterações automaticamente no armazenamento do navegador.
+- Os dados ficam neste navegador e neste dispositivo; não há sincronização entre aparelhos.
+- Em “Visão geral”, use “Baixar backup” para guardar uma cópia JSON.
+- Use “Restaurar backup” para recuperar uma cópia. A restauração substitui os dados atuais após confirmação.
+- “Exportar CSV” gera uma planilha que pode ser aberta em programas como Excel e LibreOffice.
+
+OBSERVAÇÃO
+A chave de armazenamento usada pela versão anterior foi mantida. Assim, os planejamentos já existentes são carregados e adaptados ao novo formato, sem remover os períodos e as despesas cadastradas.
