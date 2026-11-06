@@ -1,12 +1,8 @@
-<img width="1001" height="483" alt="image" src="https://github.com/user-attachments/assets/70b69eed-4ac2-49bd-adf8-2de2b1f01ef7" /># Meu Planejamento Financeiro
+<img width="1001" height="483" alt="image" src="https://github.com/user-attachments/assets/70b69eed-4ac2-49bd-adf8-2de2b1f01ef7" /> Meu Planejamento Financeiro
 
 Site simples para organizar o salário do mês. Você digita quanto recebe, divide o dinheiro em **períodos** (com datas) e coloca os **gastos** de cada período. O site mostra na hora quanto já foi planejado e quanto ainda sobra.
 
 Feito só com HTML, CSS e JavaScript puro. Não precisa instalar nada e funciona sem internet.
-
-
-![Print do projeto](<img width="1001" height="483" alt="Captura de tela 2026-11-06 093428" src="https://github.com/user-attachments/assets/43ba7d49-9b23-4a71-91c3-2920775a5579" />
-)
 
 ## O que o site faz
 
