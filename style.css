@@ -1,0 +1,96 @@
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+  line-height: 1.4;
+}
+
+.app { max-width: 640px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 1.4rem; text-align: center; margin: 8px 0 16px; }
+h2 { font-size: 1.15rem; margin: 0 0 8px; }
+h3 { font-size: 1rem; margin: 0; }
+
+/* Menu */
+.menu { display: flex; gap: 6px; margin-bottom: 12px; }
+.menu button { flex: 1; padding: 10px 4px; font-size: 0.9rem; }
+.menu button.ativo { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+/* Telas */
+.tela { background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e5e7eb; }
+
+/* Campos e botões */
+label { display: block; font-weight: bold; margin: 12px 0 4px; }
+input {
+  width: 100%;
+  padding: 10px;
+  font: inherit;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+input:focus, button:focus-visible { outline: 2px solid #2563eb; outline-offset: 1px; }
+
+button {
+  font: inherit;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+button:hover { background: #f1f5f9; }
+button.principal { background: #2563eb; color: #fff; border-color: #2563eb; }
+button.principal:hover { background: #1d4ed8; }
+button.perigo { color: #b91c1c; border-color: #fca5a5; }
+button.pequeno { padding: 6px 10px; font-size: 0.85rem; }
+
+.botoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+/* Avisos */
+.aviso { padding: 10px; border-radius: 6px; margin: 10px 0; }
+.aviso.ok { background: #dcfce7; color: #166534; }
+.aviso.erro { background: #fee2e2; color: #991b1b; }
+.aviso.info { background: #fef9c3; color: #854d0e; }
+
+/* Barra de números */
+.barra {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  text-align: center;
+  background: #eff6ff;
+  padding: 10px;
+  border-radius: 6px;
+}
+.barra span { display: block; font-size: 0.85rem; color: #475569; }
+.barra strong { font-size: 1.05rem; }
+
+.progresso { height: 10px; background: #e5e7eb; border-radius: 5px; margin-top: 10px; overflow: hidden; }
+.progresso div { height: 100%; width: 0; background: #2563eb; }
+.progresso div.estourou { background: #dc2626; }
+
+/* Períodos */
+.periodo { border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px; margin-top: 12px; }
+.periodo-topo { display: flex; justify-content: space-between; align-items: center; }
+.datas { display: flex; gap: 10px; }
+.datas label { flex: 1; }
+.item { display: grid; grid-template-columns: 1fr 110px 40px; gap: 6px; margin-bottom: 8px; }
+.item button { padding: 6px; }
+.total-periodo { margin: 12px 0 0; text-align: right; }
+.vazio { text-align: center; color: #64748b; padding: 16px 0; }
+
+/* Resumo */
+.lista { list-style: none; padding: 0; margin: 8px 0 0; }
+.lista li { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #f1f5f9; }
+.cat { margin-top: 10px; }
+.cat-topo { display: flex; justify-content: space-between; }
+.cat-barra { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; margin-top: 4px; }
+.cat-barra div { height: 100%; background: #16a34a; }
+.data-texto { color: #64748b; font-size: 0.9rem; margin: 2px 0 0; }
+
+@media (max-width: 420px) {
+  .datas { flex-direction: column; gap: 0; }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu planejamento financeiro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>Meu planejamento financeiro</h1>
+
+    <nav class="menu">
+      <button type="button" data-go="salario">1. Salário</button>
+      <button type="button" data-go="planejar">2. Planejar</button>
+      <button type="button" data-go="resumo">3. Resumo</button>
+    </nav>
+
+    <!-- TELA 1: SALÁRIO -->
+    <section id="tela-salario" class="tela">
+      <h2>Quanto dinheiro você tem para organizar?</h2>
+      <p>Digite o valor do seu salário. Depois você divide esse dinheiro em períodos e gastos.</p>
+      <label for="salario">Valor em reais (R$)</label>
+      <input id="salario" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Ex: 200">
+      <p id="erro-salario" class="aviso erro" hidden></p>
+      <div class="botoes">
+        <button type="button" id="btn-continuar" class="principal">Continuar</button>
+        <button type="button" id="btn-exemplo">Ver exemplo do PDF</button>
+      </div>
+    </section>
+
+    <!-- TELA 2: PLANEJAR -->
+    <section id="tela-planejar" class="tela" hidden>
+      <div class="barra">
+        <div><span>Salário</span><strong id="b-salario"></strong></div>
+        <div><span>Planejado</span><strong id="b-planejado"></strong></div>
+        <div><span id="b-sobra-rotulo">Sobra</span><strong id="b-sobra"></strong></div>
+      </div>
+      <div class="progresso"><div id="b-progresso"></div></div>
+      <p id="b-aviso" class="aviso"></p>
+
+      <div id="periodos"></div>
+
+      <div class="botoes">
+        <button type="button" id="btn-add-periodo">+ Novo período</button>
+        <button type="button" id="btn-ver-resumo" class="principal">Ver resumo</button>
+      </div>
+    </section>
+
+    <!-- TELA 3: RESUMO -->
+    <section id="tela-resumo" class="tela" hidden>
+      <div id="resumo"></div>
+      <div class="botoes">
+        <button type="button" id="btn-voltar">Voltar e ajustar</button>
+        <button type="button" id="btn-apagar" class="perigo">Apagar tudo</button>
+      </div>
+    </section>
+  </main>
+
+  <datalist id="sugestoes">
+    <option value="Alimentação"></option>
+    <option value="Lazer"></option>
+    <option value="Transporte"></option>
+    <option value="Contas"></option>
+    <option value="Saúde"></option>
+    <option value="Viagem"></option>
+    <option value="Guardar dinheiro"></option>
+    <option value="Emergências e imprevistos"></option>
+  </datalist>
+
+  <script src="script.js"></script>
+</body>
+</html>
