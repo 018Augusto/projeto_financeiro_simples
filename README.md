@@ -1,4 +1,5 @@
-<img width="1001" height="483" alt="image" src="https://github.com/user-attachments/assets/70b69eed-4ac2-49bd-adf8-2de2b1f01ef7" /> Meu Planejamento Financeiro
+<img width="1918" height="858" alt="image" src="https://github.com/user-attachments/assets/ec933f6f-ca11-4de4-88f3-959690057843" />
+Meu Planejamento Financeiro
 
 Site simples para organizar o salário do mês. Você digita quanto recebe, divide o dinheiro em **períodos** (com datas) e coloca os **gastos** de cada período. O site mostra na hora quanto já foi planejado e quanto ainda sobra.
 
